@@ -1,0 +1,64 @@
+{% extends 'rss/base.html' %} 
+
+
+{% block body %}
+<br>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort the feed
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">    
+    <a class="dropdown-item" href="{% url 'sort_asc' %}">Most recent</a>    
+    <a class="dropdown-item" href="{% url 'sort_desc' %}">Least recent</a>      
+  </div>
+</div>
+
+
+{% if feed %}
+
+<h2>{{ feed.feed.title }}</h2>
+<br>
+
+{% if feed.entries %}
+
+{% for entry in feed.entries %}
+  
+
+<div class="card mb-3">
+  <div class="card-header">
+    <h5 class="card-title">{{ entry.title }}</h5>
+  </div>
+
+  <div class="row no-gutters">
+
+    <div class="col-md-2">
+      <img src="{{ entry.enclosures.0.href }}" class="card-img" alt="Feed image">
+    </div>
+
+    <div class="col-md-10">
+      <div class="card-body">
+        
+        <p class="card-text">{{ entry.description }}</p>
+        <p class="card-text">
+          <small class="text-muted">{{ entry.published }}</small>
+        </p>
+        <a href="{{ entry.link }}" class="btn btn-primary" target="_blank" >Visit link</a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endfor %}
+
+{% endif %}
+
+{% else %}
+
+{% endif %}
+
+{{ feed2 }}
+
+{% endblock %}
