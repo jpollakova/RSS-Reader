@@ -6,9 +6,9 @@ import sys
 
 def main():
     if os.environ.get('DJANGO_ENV') == 'production':
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'azuresite.production')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rssreader.production')
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'azuresite.settings')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rssreader.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
