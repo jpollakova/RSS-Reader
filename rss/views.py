@@ -2,9 +2,12 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from htmlmin.decorators import minified_response
+
 import feedparser
 
 
+@minified_response
 def index(request):
 
     if request.GET.get("url"):
@@ -22,6 +25,7 @@ def index(request):
     return render(request, 'rss/reader.html', {'feed' : feed,})
 
 
+@minified_response
 def sort_asc(request):
 
     url= request.session['url']
@@ -37,6 +41,7 @@ def sort_asc(request):
     
 
 
+@minified_response
 def sort_desc(request):
 
     url= request.session['url']
